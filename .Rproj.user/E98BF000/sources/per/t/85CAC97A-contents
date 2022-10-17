@@ -1,0 +1,216 @@
+library(blogdown)
+?blogdown::new_site()
+
+new_site(
+  dir = ".",
+  force = NA,
+  install_hugo = TRUE,
+  format = "yaml",
+  sample = TRUE,
+  theme = "rafed/BlogRa",
+  hostname = "github.com",
+  theme_example = TRUE,
+  empty_dirs = FALSE,
+  to_yaml = TRUE,
+  netlify = TRUE,
+  .Rprofile = TRUE,
+  serve = if (interactive()) "ask" else FALSE
+)
+
+blogdown::serve_site()
+blogdown::stop_server()
+blogdown::new_post('Finance 2')
+
+new_post(
+  'Theorie des jeux',
+  kind = "",
+  open = interactive(),
+  author = getOption("blogdown.author"),
+  categories = NULL,
+  tags = NULL,
+  date = Sys.Date(),
+  time = getOption("blogdown.time", FALSE),
+  file = NULL,
+  slug = NULL,
+  title_case = getOption("blogdown.title_case"),
+  subdir = getOption("blogdown.subdir", "post"),
+  ext = getOption("blogdown.ext", ".md")
+)
+
+
+
+
+
+
+
+
+
+
+<div class="featured-posts">
+container-fluid
+container-md
+
+<div class="bg-offwhite py-5">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  {{ partial "ads.html" "ads/horizontal-ad.js" }}
+
+{{/* $filteredPosts := where (where .Site.Pages "Type" "blog") "UniqueID" "!= ".UniqueID }}
+{{ $relatedPosts := shuffle $filteredPosts | first 3 */}}
+
+{{ $latestPosts := where .Site.RegularPages ".Section" "in" (slice "posts" "sections") }}
+{{ $latestPosts = $latestPosts | symdiff $featured}}
+{{ $latestPosts = $latestPosts.ByDate.Reverse | first 6 }}
+
+{{ range $latestPosts }}
+{{ partial "suggestion.html" . }}
+{{ end }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{ define "main" }}
+
+<div id="featured">
+  <div class = ”container-md” >
+  <div class="row">
+  <div class="featured-posts">
+  {{ $featured := first 3 (where .Site.RegularPages.ByPublishDate.Reverse ".Section" "in" (slice "posts" "sections")) }}
+{{ range $i, $feat:=  $featured }}
+{{ partial "featured-post.html" (dict "context" . "index" $i) }}
+{{ end }}
+</div>
+  </div>
+  </div>
+  </div>
+  
+  <div class="p-3 mb-2 bg-secondary text-white">
+  <div class="container-md">
+  <div class="row">
+  
+  he jeg hhg hg hg f gf fd ff xdx fxfc fc
+</div>
+  </div>
+  </div>
+  
+  {{ if gt .Sections 0 }}
+<div class="bg-offwhite pb-5 pt-1">
+  <div class="container-md">
+  <h2 class="section-title">
+  <a href={{ "/sections/" | relURL }}>Sections</a>
+  </h2>
+  
+  <div class="row">
+  {{ $allPages := where .Site.Pages "Section" "sections" }}
+{{ $contentPages_and_section := where .Site.RegularPages "Section" "sections" }}
+{{ $contentPages := symdiff $allPages $contentPages_and_section }}
+
+{{ $sections := where $contentPages "Title" "!=" "Sections" }}
+
+{{ $sections := $sections.ByDate.Reverse | first 3 }}
+
+{{ range $sections }}
+{{ if ne .Title "Sections" }}
+{{ partial "suggestion-section.html" . }}
+{{ end }}
+{{ end }}
+</div>
+  
+  {{ partial "ads.html" "ads/horizontal-ad.js" }}
+</div>
+  </div>
+  {{ end }}
+
+
+{{ end }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+  {{ with .Site.Params.footer }}
+{{ . }}
+{{ else }}
+© 2021 <a href="https://rafed.github.io/" target="_blank">DevRa</a>.
+<a href="https://github.com/rafed/BlogRa/" target="_blank">BlogRa</a> theme for
+<a href="https://github.com/gohugoio/hugo/" target="_blank">
+  Hugo
+</a>. 
+{{ end }}
+</p>

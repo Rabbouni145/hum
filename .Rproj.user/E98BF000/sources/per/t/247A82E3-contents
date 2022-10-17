@@ -1,0 +1,68 @@
+baseURL: https://example.com/blogra/
+canonifyURLs: yes
+pluralizeListTitles: no
+summaryLength: 25
+theme: BlogRa
+languageCode: en-us
+title: B-Academics
+disqusShortname: ''
+params:
+  adsense: adsense-key
+  contactEmail: aimekoffimagloire@gmail.com
+  description: C'est un blog de finance
+  facebook: https://www.facebook.com/profile.php?id=100013262972220
+  footer: 'Aime' 
+  github: ''
+  googleAnalytics: ''
+  googleSearch: ''
+  instagram: ''
+  linkedin: https://www.linkedin.com/in/aim%C3%A9-nlend-2496bb24b/
+  math: no
+  mermaid: no
+  pinterest: ''
+  twitter: ''
+  youtube: ''
+menu: 
+  main:
+    - name: Acceuil
+      url: /
+      weight: 1
+    - identifier: blog
+      name: Blog
+      weight: 2
+    - name: Algorithmes
+      parent: blog
+      url: /Algorithmes/
+      weight: 1
+    - name: FINANCES
+      parent: blog
+      url: /Finances/
+      weight: 2
+    - name: Data Science
+      parent: blog
+      url: /Data/
+      weight: 3
+    - name: divider
+      parent: blog
+      weight: 4
+    - name: Tags
+      parent: blog
+      url: /tags/
+      weight: 5
+    - name: Notre Equipe
+      url: /about/
+      weight: 3
+    - name: Contact
+      url: /contact/
+      weight: 4
+markup: 
+  goldmark:   
+    parser: 
+      attribute: 
+        block: yes
+    renderer: 
+      unsafe: yes
+module:
+  hugoVersion:
+    extended: yes
+    min: 0.102.3
